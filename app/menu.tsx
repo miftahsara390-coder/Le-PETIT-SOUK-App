@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,22 +9,20 @@ export default function MenuScreen() {
 
   const renderMenuItem = ({ item }: { item: any }) => (
     <TouchableOpacity style={styles.menuItem}>
-     
+
       <Image
         source={typeof item.image === 'string' ? { uri: item.image } : item.image}
         style={styles.foodImage}
       />
-      
-     
       <View style={styles.textContainer}>
         <Text style={styles.foodTitle}>{item.title}</Text>
         <Text style={styles.foodCategory}>{item.category}</Text>
       </View>
-      
-   
+
+
       <Text style={styles.arrow}>{">"}</Text>
 
-     
+
       <View style={styles.priceContainer}>
         <Text style={styles.priceText}>{item.price.split(' ')[0]}</Text>
         <Text style={styles.currencyText}>{item.price.split(' ')[1]}</Text>
@@ -32,18 +31,18 @@ export default function MenuScreen() {
   );
 
   return (
-   
+
     <SafeAreaView style={styles.container}>
-    <TouchableOpacity style={styles.accueilButton}>
-  <Text style={styles.accueilText}>Accueil</Text>
-</TouchableOpacity>
-     <View style={styles.content}>
-               <Text style={styles.Brandtitle}> LE PETIT SOUK</Text>
-               <Text style={styles.BrandSubtitle}>
-                GASTROMIE MAROCAINE</Text>
-             </View>
-     
-      <Image source={require("../assets/images/logo-menu.webp")}  style={styles.headerImage}/>
+      <TouchableOpacity style={styles.accueilButton} onPress={()=>router.back()}>
+        <Text style={styles.accueilText}>  Accueil</Text>
+      </TouchableOpacity>
+      <View style={styles.content}>
+        <Text style={styles.Brandtitle}> LE PETIT SOUK</Text>
+        <Text style={styles.BrandSubtitle}>
+          GASTROMIE MAROCAINE</Text>
+      </View>
+
+      <Image source={require("../assets/images/logo-menu.webp")} style={styles.headerImage} />
       <FlatList
         data={MENU_DATA}
         keyExtractor={(item) => item.id}
@@ -52,7 +51,7 @@ export default function MenuScreen() {
         showsVerticalScrollIndicator={false}
       />
 
-   
+
       <View style={styles.footer}>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>PASSER COMMANDE</Text>
@@ -66,7 +65,7 @@ export default function MenuScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#dfbb8a', 
+    backgroundColor: '#dfbb8a',
   },
   accueilButton: {
     position: 'absolute',
@@ -115,19 +114,19 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: 16,
-    paddingBottom: 100, 
+    paddingBottom: 100,
   },
-  headerImage:{
-width:500,
-height:200,
+  headerImage: {
+    width: 500,
+    height: 200,
 
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 144, 9, 0.77)', 
+    backgroundColor: 'rgba(255, 144, 9, 0.77)',
     padding: 12,
-    borderRadius: 25, 
+    borderRadius: 25,
     marginBottom: 12,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
@@ -184,7 +183,7 @@ height:200,
     backgroundColor: 'transparent',
   },
   button: {
-    backgroundColor: 'rgb(255, 89, 0)', 
+    backgroundColor: 'rgb(255, 89, 0)',
     paddingVertical: 14,
     paddingHorizontal: 50,
     borderRadius: 30,
@@ -192,7 +191,7 @@ height:200,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
-    elevation: 5, 
+    elevation: 5,
   },
   buttonText: {
     color: '#ffffff',
